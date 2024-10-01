@@ -32,7 +32,7 @@ jobs:
       - name: Run tinystatus.py and stop after 1 minute
         run: |
           timeout 60s python tinystatus.py
-          continue-on-error: true
+        continue-on-error: true
 
       # Step 5: Commit and push the contents of ./output to the gh-pages branch
       - name: Deploy to gh-pages
