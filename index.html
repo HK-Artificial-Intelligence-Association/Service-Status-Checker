@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TinyStatus</title>
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16x16.png">
+    <link rel="manifest" href="assets/site.webmanifest">
+    <link rel="mask-icon" href="assets/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+    <style>
+        :root {
+            --bg-color: #f4f4f4;
+            --text-color: #333;
+            --heading-color: #2c3e50;
+            --card-bg: #fff;
+            --card-shadow: rgba(0,0,0,0.1);
+            --footer-color: #7f8c8d;
+            --link-color: #3498db;
+        }
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --bg-color: #1a1a1a;
+                --text-color: #e0e0e0;
+                --heading-color: #b0b0b0;
+                --card-bg: #2a2a2a;
+                --card-shadow: rgba(255,255,255,0.1);
+                --footer-color: #888;
+                --link-color: #5dade2;
+            }
+            a,
+            a:link,
+            a:visited {
+                cursor: pointer;
+                color: rgb(128, 128, 128);
+                text-decoration: none !important;
+            }
+            a:hover {
+                color: white !important;
+            }
+        }
+        body {
+            font-family: sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background: var(--bg-color);
+        }
+        h1, h2 {
+            color: var(--heading-color);
+            text-align: center;
+        }
+        .status-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 15px;
+            margin-bottom: 40px;
+        }
+        .status-item {
+            background: var(--card-bg);
+            border-radius: 8px;
+            padding: 15px;
+            box-shadow: 0 2px 4px var(--card-shadow);
+            text-align: center;
+            transition: transform .2s;
+        }
+        .status-item:hover {
+            transform: translateY(-5px);
+        }
+        .status-item h3 {
+            margin: 0 0 10px;
+        }
+        .status-up { color: #27ae60; }
+        .status-down { color: #e74c3c; }
+        .incidents {
+            background: var(--card-bg);
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 4px var(--card-shadow);
+            margin-bottom: 40px;
+        }
+        .footer {
+            text-align: center;
+            font-size: .9em;
+            color: var(--footer-color);
+            margin-top: 40px;
+        }
+        .footer a {
+            color: var(--link-color);
+            text-decoration: none;
+        }
+        .footer a:hover { text-decoration: underline; }
+         a,
+        a:link,
+        a:visited {
+            cursor: pointer;
+            color: rgb(51, 51, 51);
+            text-decoration: none !important;
+        }
+
+        a:hover {
+            color: rgb(86, 86, 86);
+        }
+
+    </style>
+</head>
+<body>
+    <h1>元狲科技服务状态监控</h1>
+    <h2>【当前状态】</h2>
+    
+    <h3>线上服务可访问性 Status</h3>
+    <div class="status-grid">
+        
+            
+                <a target="_blank" href="http://uat.newsdiy.cn">
+            
+        <div class="status-item">
+            <h3>AI头条 UAT 环境</h3>
+            <p class="status-up">
+                Operational
+            </p>
+        </div>
+            
+                </a>
+            
+        
+    </div>
+    
+    <h3>服务器状态 Status</h3>
+    <div class="status-grid">
+        
+            
+        <div class="status-item">
+            <h3>新加坡-腾讯云服务器状态</h3>
+            <p class="status-down">
+                Down
+            </p>
+        </div>
+            
+        
+    </div>
+    
+    <h2>服务状态页维护历史</h2>
+    <div class="incidents">
+        <h2>2024-10-01: 初始化项目</h2>
+<p>该项目改自开源项目 tinystatus
+准备后面接入服务宕机时的飞书通知</p>
+    </div>
+    <div class="footer">
+        <p>最后更新时间: 2024-10-01 14:57:38</p>
+        <p><a href="history.html">【查看状态历史】</a></p>
+        <p>Powered by <a href="https://github.com/harsxv/tinystatus">TinyStatus</a></p>
+    </div>
+</body>
+</html>
