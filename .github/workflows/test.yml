@@ -35,12 +35,9 @@ jobs:
         continue-on-error: true
 
       # Step 5: Commit and push the contents of ./output to the gh-pages branch
-      - name: Deploy to gh-pages
-        run: |
-          git config --local user.name "github-actions[bot]"
-          git config --local user.email "github-actions[bot]@users.noreply.github.com"
-          git checkout -B gh-pages
-          cp -r ./output/* .
-          git add .
-          git commit -m "Deploy updated output"
-          git push origin gh-pages --force
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./out  # 静态导出文件夹路径
+          force_orphan: true  # 确保 gh-pages 分支不会出现冲突
