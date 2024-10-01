@@ -39,5 +39,5 @@ jobs:
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./out  # 静态导出文件夹路径
+          publish_dir: ./output  # 静态导出文件夹路径
           force_orphan: true  # 确保 gh-pages 分支不会出现冲突
