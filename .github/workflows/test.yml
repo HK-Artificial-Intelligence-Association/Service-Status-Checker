@@ -1,6 +1,9 @@
 name: 测试 - 生成服务状态页面
 
 on:
+  push:
+    branches:
+      - main 
   schedule:
     - cron: '*/1 * * * *'  # 每隔1分钟执行一次
 
