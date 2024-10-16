@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TinyStatus History</title>
+    <title>元狲科技服务状态监控-历史记录</title>
     <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16x16.png">
@@ -85,26 +85,28 @@
     </style>
 </head>
 <body>
-    <h1>元狲科技服务状态历史</h1>
+    <h1>元狲科技服务状态监控-历史记录</h1>
     <div class="history-grid">
-        {% for service, entries in history.items() %}
+        <% for (const [service, entries] of Object.entries(history)) { %>
         <div class="history-item">
-            <h2>{{ service }}</h2>
-            {% for entry in entries|reverse %}
+            <h2><%= service %></h2>
+            <% for (const entry of entries.slice().reverse()) { %>
             <div class="history-entry">
-                <span>{{ entry.timestamp.split('T')[0] }} {{ entry.timestamp.split('T')[1][:8] }}</span>
-                <span class="{% if entry.status %}status-up{% else %}status-down{% endif %}">
-                    {{ 'Up' if entry.status else 'Down' }}
+                <span>
+                    <%= new Date(entry.timestamp).toLocaleString('zh-CN', { timeZone: 'Asia/Shanghai', hour12: false }).replace(/\//g, '-') %>
+                </span>
+                <span class="<%= entry.status ? 'status-up' : 'status-down' %>">
+                    <%= entry.status ? '正常' : '异常' %>
                 </span>
             </div>
-            {% endfor %}
+            <% } %>
         </div>
-        {% endfor %}
+        <% } %>
     </div>
     <div class="footer">
-        <p>Last updated: {{ last_updated }}</p>
-        <p><a href="index.html">Back to Current Status</a></p>
-        <p>Powered by <a href="https://github.com/harsxv/tinystatus">TinyStatus</a></p>
+        <p>最后更新时间：<%= last_updated %></p>
+        <p><a href="index.html">返回当前状态</a></p>
+        <p>由 <a href="https://github.com/harsxv/tinystatus">TinyStatus</a> 支持</p>
     </div>
 </body>
 </html>

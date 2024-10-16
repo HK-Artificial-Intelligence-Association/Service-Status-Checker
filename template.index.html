@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TinyStatus</title>
+    <title>元狲科技服务状态监控</title>
     <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16x16.png">
@@ -35,7 +35,7 @@
             a:link,
             a:visited {
                 cursor: pointer;
-                color: rgb(128, 128, 128);
+                color: white;
                 text-decoration: none !important;
             }
             a:hover {
@@ -111,34 +111,34 @@
 </head>
 <body>
     <h1>元狲科技服务状态监控</h1>
-    <h2>【当前状态】</h2>
-    {% for group, checks in groups.items() %}
-    <h3>{{group}} Status</h3>
+    <h2>当前状态</h2>
+    <% for (const [group, checks] of Object.entries(groups)) { %>
+    <h3><%= group %> 状态</h3>
     <div class="status-grid">
-        {% for check in checks %}
-            {% if check.url %}
-                <a target="_blank" href="{{ check.url }}">
-            {% endif %}
+        <% for (const check of checks) { %>
+            <% if (check.url) { %>
+                <a target="_blank" href="<%= check.url %>">
+            <% } %>
         <div class="status-item">
-            <h3>{{ check.name }}</h3>
-            <p class="{% if check.status %}status-up{% else %}status-down{% endif %}">
-                {{ 'Operational' if check.status else 'Down' }}
+            <h3><%= check.name %></h3>
+            <p class="<%= check.status ? 'status-up' : 'status-down' %>">
+                <%= check.status ? '正常运行' : '异常' %>
             </p>
         </div>
-            {% if check.url %}
+            <% if (check.url) { %>
                 </a>
-            {% endif %}
-        {% endfor %}
+            <% } %>
+        <% } %>
     </div>
-    {% endfor %}
-    <h2>服务状态页维护历史</h2>
+    <% } %>
+    <h2>事件历史</h2>
     <div class="incidents">
-        {{ incidents | safe }}
+        <%- incidents %>
     </div>
     <div class="footer">
-        <p>最后更新时间: {{ last_updated }}</p>
-        <p><a href="history.html">【查看状态历史】</a></p>
-        <p>Powered by <a href="https://github.com/harsxv/tinystatus">TinyStatus</a></p>
+        <p>最后更新时间：<%= last_updated %></p>
+        <p><a href="history.html">查看状态历史</a></p>
+        <p>由 <a href="https://github.com/harsxv/tinystatus">TinyStatus</a> 提供支持</p>
     </div>
 </body>
 </html>
