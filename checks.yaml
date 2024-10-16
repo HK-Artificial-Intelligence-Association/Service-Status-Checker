@@ -1,80 +1,110 @@
-- title: '线上服务可访问性'
+- title: '内部业务服务'
   checks:
-    - name: AI头条 UAT 环境
+    - name: API头条 UAT 环境
+      serviceType: 内部服务
       type: http
       host: http://uat.newsdiy.cn
       url: http://uat.newsdiy.cn
       expected_code: 200
 
-- title: '服务器状态'
+    - name: Dify 前端
+      serviceType: 内部服务
+      type: http
+      host: http://api.newsdiy.cn
+      url: http://api.newsdiy.cn:4006
+      expected_code: 200
+
+- title: '内部API端点状态监控'
   checks:
-    - name: 新加坡-腾讯云服务器状态
+    - name: 【AI头条】内容爬取生成系统
+      serviceType: 内部服务
+      type: port
+      host: api.newsdiy.cn
+      port: 4000
+
+    - name: 【AI头条】信息推送系统
+      serviceType: 内部服务
+      type: http
+      host: http://api.newsdiy.cn
+      url: http://api.newsdiy.cn/notification/healthcheck
+      expected_code: 200
+
+    - name: 【AI头条】第三方token获取服务
+      serviceType: 内部服务
+      type: port
+      host: api.newsdiy.cn
+      port: 7001
+
+    - name: 统一身份认证系统
+      serviceType: 内部服务
+      type: port
+      host: api.newsdiy.cn
+      port: 4001
+
+    - name: Dify - 大模型总结生成系统
+      serviceType: 内部服务
+      type: port
+      host: api.newsdiy.cn
+      port: 4006
+
+    - name: 飞书Bot通知监控
+      serviceType: 内部服务
+      type: port
+      host: api.newsdiy.cn
+      port: 3333
+
+    - name: API中台服务
+      serviceType: 内部服务
+      type: port
+      host: 47.236.123.254
+      port: 8888
+
+
+- title: '服务器状态监控'
+  checks:
+    - name: 新加坡 - 内部开发使用腾讯云服务器
+      serviceType: 服务器状态
       type: ping
       host: 43.134.33.161
-#
-#    - name: Wikipedia Home
-#      type: http
-#      host: https://www.wikipedia.org
-#      url: https://en.wikipedia.org/wiki/Main_Page
-#      expected_code: 200
-#
-#    - name: Wikipedia API
-#      type: http
-#      host: https://en.wikipedia.org/w/api.php
-#      expected_code: 200
-#
-#    - name: Hacker News
-#      type: http
-#      host: https://news.ycombinator.com
-#      expected_code: 200
-#
-#    - name: Google Home
-#      type: http
-#      host: https://www.google.com
-#      expected_code: 200
-#
-#- title: 'Group 2'
-#  checks:
-#    - name: Cloudflare DNS Checker
-#      type: ping
-#      host: 1.1.1.1
-#
-#    - name: Google Public DNS
-#      type: ping
-#      host: 8.8.8.8
-#
-#    - name: Dummy Postgres Database
-#      type: port
-#      host: ec2-54-173-89-248.compute-1.amazonaws.com
-#      port: 5432
-#
-#    - name: Dummy MySQL Database
-#      type: port
-#      host: db.example.com
-#      port: 3306
-#
-#- title: 'Group 3'
-#  checks:
-#    - name: Amazon Web Services
-#      type: http
-#      host: https://aws.amazon.com
-#      expected_code: 200
-#
-#    - name: AWS S3 API
-#      type: http
-#      host: https://s3.amazonaws.com
-#      expected_code: 200
-#
-#    - name: Twitter
-#      type: http
-#      host: https://twitter.com
-#      expected_code: 200
-#
-#    - name: Facebook Home
-#      type: http
-#      host: https://www.facebook.com
-#      expected_code: 200
-#
-#    - name: Localhost
-#      type: ping
-#      host: localhost
+
+    - name: 上海 - 元狲生产阿里云服务器
+      serviceType: 服务器状态
+      type: ping
+      host: 47.102.217.188
+
+    - name: 新加坡 - 心理学疗愈项目（ganjiuwanshi api）服务器
+      serviceType: 服务器状态
+      type: ping
+      host: 47.236.123.254
+
+
+    # - name: Dummy MySQL Database
+    #   type: port
+    #   host: db.example.com
+    #   port: 3306
+
+# - title: 'Group 3'
+#   checks:
+#     - name: Amazon Web Services
+#       type: http
+#       host: https://aws.amazon.com
+#       expected_code: 200
+
+#     - name: AWS S3 API
+#       type: http
+#       host: https://s3.amazonaws.com
+#       expected_code: 200
+
+#     - name: Twitter
+#       type: http
+#       host: https://twitter.com
+#       expected_code: 200
+
+#     - name: Facebook Home
+#       type: http
+#       host: https://www.facebook.com
+#       expected_code: 200
+
+#     - name: Localhost
+#       type: ping
+#       host: localhost

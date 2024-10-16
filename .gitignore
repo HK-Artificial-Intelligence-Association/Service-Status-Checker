@@ -1,6 +1,7 @@
-index.html
-history.html
+node_modules/
+coverage/
+dist/
 history.json
-nohup.out
-# .env
-/.idea
+checks.yaml
+
+output/
